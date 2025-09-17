@@ -133,4 +133,69 @@ CSS          1 hr 35 mins    ██░░░░░░░░░░░░░░░
 
 ---
 
+## 🚀 Setup Instructions
+
+### 1. Create the Snake Animation Workflow
+Create `.github/workflows/snake.yml` in your profile repository:
+
+```yaml
+name: Generate Snake Animation
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # Every 12 hours
+  workflow_dispatch:
+  push:
+    branches:
+    - master
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Generate snake.svg
+        uses: Platane/snk/svg-only@v2
+        with:
+          github_user_name: yourusername
+          outputs: dist/snake.svg
+
+      - name: Push snake.svg to output branch
+        uses: crazy-max/ghaction-github-pages@v2.6.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### 2. WakaTime Setup (Optional)
+Create `.github/workflows/waka-readme.yml`:
+
+```yaml
+name: Waka Readme
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 18 * * *'
+
+jobs:
+  update-readme:
+    name: Update this repo's README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: athul/waka-readme@master
+        with:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+```
+
+### 3. Repository Setup Steps:
+1. Create a repository named exactly as your GitHub username
+2. Add the README.md content
+3. Create the workflow files in `.github/workflows/` directory
+4. Enable GitHub Actions in repository settings
+5. For WakaTime: Add your API key to repository secrets
+
 *This README was generated with ❤️ and lots of ☕*
