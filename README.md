@@ -10,12 +10,12 @@
 
 ```javascript
 const developer = {
-    name: "Your Name",
-    location: "Your City, Country",
-    education: "Your Degree/Institution",
+    name: "Calvin Liu Victory",
+    location: "Surabaya, Indonesia",
+    education: "University Katolik Widya Mandala Surabaya",
     currentlyWorking: "Your Current Role",
     learningFocus: ["Technology 1", "Technology 2", "Technology 3"],
-    hobbies: ["Hobby 1", "Hobby 2", "Hobby 3"],
+    hobbies: ["Badminton", "Make a coffe", "Coding"],
     askMeAbout: ["Web Development", "Open Source", "Tech Career"]
 };
 ```
